@@ -2,6 +2,7 @@ class User < ApplicationRecord
 	attr_accessor :remember_token
 	before_save { self.email = email.downcase }
 	before_create :remember_token
+	has_many :post
 
   validates :name,  presence: true, length: { maximum: 50 }
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
@@ -29,10 +30,17 @@ class User < ApplicationRecord
     update_attribute(:remember_digest, User.digest(remember_token))
   end
 
-
   # Returns true if the given token matches the digest.
-  def authenticated?(remember_token)
+  def authenticated?(attribute, token)
+    digest = send("#{attribute}_digest")
+  	return false if remember_digest.nil?
     BCrypt::Password.new(remember_digest).is_password?(remember_token)
   end
+
+  # Forgets a user.
+  def forget
+    update_attribute(:remember_digest, nil)
+  end
+
 
 end

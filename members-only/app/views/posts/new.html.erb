@@ -1,0 +1,13 @@
+    <h2>Create Post</h2>
+
+    <%= form_for(@post) do |f| %>
+
+      <%= f.label :title %>
+      <%= f.text_field :title, class: 'form-control' %>
+
+      <%= f.label :body %>
+      <%= f.text_field :body, class: 'form-control' %>
+
+
+      <%= f.submit "Save changes", class: "btn btn-primary" %>
+    <% end %>
