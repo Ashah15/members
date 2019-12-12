@@ -1,8 +1,16 @@
-<h1>Our story Post</h1>
 
-@posts.each do |post|
+	<div class="row py-5">
+		
 
-<%=post.title %>
-<%=post.body  %> 
+   <div class="col-12">
+   	<h1 class="px-3">Secret Posts</h1>
 
-end
+   <% if logged_in? %>
+    <p class="px-3 d-block"><%= @user.name %> is currently logged in</p>
+    <p class="px-3 d-block"><%= link_to "Create New Post", new_post_path , {:class => 'btn btn-primary btn-lg'}%></p>
+   <% end %>
+   	<%= render @posts %>
+   </div>
+
+		
+	</div>

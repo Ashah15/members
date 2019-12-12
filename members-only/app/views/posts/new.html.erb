@@ -1,6 +1,9 @@
-    <h2>Create Post</h2>
 
-    <%= form_for(@post) do |f| %>
+	<div class="row">
+		<div class="col">
+			 <h2>Create Post</h2>
+
+    	<%= form_for(@post) do |f| %>
 
       <%= f.label :title %>
       <%= f.text_field :title, class: 'form-control' %>
@@ -9,5 +12,7 @@
       <%= f.text_field :body, class: 'form-control' %>
 
 
-      <%= f.submit "Save changes", class: "btn btn-primary" %>
+      <%= f.submit "Save changes", class: "btn btn-primary my-3" %>
     <% end %>
+		</div>
+	</div>

@@ -1,15 +1,16 @@
 class PostsController < ApplicationController
-	before_action :logged_in_user, only: [:new, :create]
+	before_action :logged_in_user, only: [:new, :create, :destroy]
 
 
-	def new
-		@post = Post.new
-	end
+	  def new
+		  @post = current_user.post.new
+	  end
 
     def create
-        @post = Post.new(post_params)
+        @post = current_user.post.build(post_params)
         if @post.save
-            redirect_to @post
+        	  flash.now[:success] = 'Post created!'
+            redirect_to posts_path
         else
             render :new
         end
@@ -17,7 +18,8 @@ class PostsController < ApplicationController
     end
 
     def index
-        @posts = Posts.all
+    		@user = current_user
+        @posts = Post.all
     end
 
 
@@ -36,6 +38,8 @@ class PostsController < ApplicationController
         redirect_to login_url
       end
     end
+
+ 
 
     def post_params
         params.require(:post).permit(:title, :body, :user_id)
