@@ -1,3 +1,7 @@
 class Post < ApplicationRecord
-  belongs_to :user
+  belongs_to :user 
+  default_scope -> { order(created_at: :desc) }
+  validates :user_id, presence: true
+  validates :body, presence: true, length: { maximum: 140 }
+  self.per_page = 5
 end
