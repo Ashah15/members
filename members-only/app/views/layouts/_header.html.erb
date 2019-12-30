@@ -7,7 +7,7 @@
   <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
     <div class="navbar-nav ml-auto">
       <%= link_to "Home", posts_path, {:class => 'nav-link active'}%>
-      <%unless logged_in? %>
+      <%unless current_user %>
       	<%= link_to "Sign in", login_path, {:class => 'nav-link'}%>
       <% else %>
       <%= link_to "Sign out", logout_path, {:class => 'nav-link', method: :delete } %>
