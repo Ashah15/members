@@ -1,0 +1,15 @@
+
+<div class="card my-4">
+  <div class="card-body">
+    <h5 class="card-title"><%=post.title %></h5>
+    <p class="card-text"><%=post.body %>
+     <% if logged_in? %><br><br>
+       <span class="user">Author: <%=post.user.name %></span>
+      <% end %></p>
+      <p class="timestamp"><em>Posted: <%= time_ago_in_words(post.created_at) %> ago.</em></p>
+  </div>
+</div>
+
+
+
+
