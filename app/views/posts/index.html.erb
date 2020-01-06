@@ -1,0 +1,21 @@
+
+	<div class="row py-5">
+		
+
+   <div class="col-12">
+   	<h1 class="px-3">Secret Posts</h1>
+
+   <% if current_user %>
+    <p class="px-3 d-block"><%= @current_user.name %> is currently logged in</p>
+    <p class="px-3 d-block"><%= link_to "Create New Post", new_post_path , {:class => 'btn btn-primary btn-lg'}%></p>
+   <% end %>
+
+  
+	<%= will_paginate @posts %>
+	   	<%= render @posts %>
+	   	<%= will_paginate @posts %>
+
+   </div>
+
+		
+	</div>
